@@ -19,9 +19,9 @@ $interpolation-format-string: '%s';
   @if $string == $old {
     $_return: $new;
   } @else if $_i {
-    $_a: str-slice($string, 1, $_i - 1);
+    $_a: if($_i > 1, str-slice($string, 1, $_i - 1), '');
     $_z: str-slice($string, $_i + $_n);
-    $_return: $_a + ($new or '') + $_z;
+    $_return: $_a + if($new, $new, '') + $_z;
   }
 
   @return $_return;

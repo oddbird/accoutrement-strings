@@ -1,0 +1,52 @@
+// String Tests
+// ============
+
+@import '../../node_modules/sass-true/sass/true';
+@import '../../sass/strings';
+
+
+// String Replace
+// --------------
+@include test-module('str-replace [function]') {
+
+  @include test('Replacing a sub-string with another string') {
+    $test: str-replace('hello terrible world!', 'terrible', 'beautiful');
+    $expect: 'hello beautiful world!';
+    @include assert-equal($test, $expect,
+      'Substring should be replaced within larger string');
+  }
+
+  @include test('Replacing a full string') {
+    $test: str-replace('hello', 'hello', 'world');
+    $expect: 'world';
+    @include assert-equal($test, $expect,
+      'Full string should be replaced');
+  }
+
+  @include test('Replacing a sub-string with nothing') {
+    $test: str-replace('hello world', 'hello ', false);
+    $expect: 'world';
+    @include assert-equal($test, $expect,
+      'Replacing a string with false should remove it entirely');
+
+    $test: str-replace('hello world', 'hello ', null);
+    $expect: 'world';
+    @include assert-equal($test, $expect,
+      'Replacing a string with null should remove it entirely');
+  }
+}
+
+
+// Interpolate
+// -----------
+@include test-module('interpolate [function]') {
+  @include test('Replace any number of interpolation strings with values') {
+    $test: interpolate('hello %s%s', 'world', '!');
+    $expect: 'hello world!';
+    @include assert-equal($test, $expect,
+      'All format strings should be replaced by interpolation values.');
+  }
+}
+
+
+@include report;
