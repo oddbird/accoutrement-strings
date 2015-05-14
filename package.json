@@ -1,6 +1,6 @@
 {
   "name": "accoutrement-strings",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Sass string utilities.",
   "homepage": "https://github.com/oddbird/accoutrement-strings",
   "repository": {
@@ -9,10 +9,20 @@
   },
   "devDependencies": {
     "mocha": "^2.1.0",
-    "sass-true": "^2.0.0-beta.1"
+    "sass-true": "^2.0.2"
   },
   "author": "Eric M Suzanne <eric@oddbird.net>",
   "license": "MIT",
+  "keywords": [
+    "sass",
+    "accoutrement",
+    "toolkit",
+    "sass-strings",
+    "eyeglass-module"
+  ],
+  "eyeglass": {
+    "exports": "eyeglass-exports.js"
+  },
   "scripts": {
     "test": "node_modules/.bin/mocha"
   },
