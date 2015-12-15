@@ -5,4 +5,4 @@ String helper functions
 
 ## Installation
 
-``bower install accoutrement-strings``
+``npm install accoutrement-strings``
