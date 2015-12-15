@@ -34,6 +34,13 @@
     @include assert-equal($test, $expect,
       'Replacing a string with null should remove it entirely');
   }
+
+  @include test('Replacing all instances of a sub-string') {
+    @include assert-equal(
+      str-replace('hello world', 'o', '000', true),
+      'hell000 w000rld',
+      'All instances can be replaced at once');
+  }
 }
 
 

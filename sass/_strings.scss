@@ -6,31 +6,38 @@ $interpolation-format-string: '%s';
 
 // String Replace
 // --------------
-// Return a string, with a substring replaced
+/// Return a string, with a substring replaced
 @function str-replace(
   $string,
   $old,
-  $new: null
+  $new: null,
+  $replace-all: false
 ) {
-  $_return: $string;
-  $_i: str-index($string, $old);
-  $_n: str-length($old);
+  $return: $string;
+  $i: str-index($string, $old);
+  $n: str-length($old);
 
   @if $string == $old {
-    $_return: $new;
-  } @else if $_i {
-    $_a: if($_i > 1, str-slice($string, 1, $_i - 1), '');
-    $_z: str-slice($string, $_i + $_n);
-    $_return: $_a + if($new, $new, '') + $_z;
+    $return: $new;
+  } @else if $i {
+    $a: if($i > 1, str-slice($string, 1, $i - 1), '');
+    $z: str-slice($string, $i + $n);
+
+    @if $replace-all {
+      $z: str-replace($z, $old, $new, true);
+    }
+
+    $return: $a + if($new, $new, '') + $z;
   }
 
-  @return $_return;
+  @return $return;
 }
 
 
 // Interpolate
 // -----------
-// Return a string with interpolated values replacing '%s' format strings
+/// Return a string with interpolated values
+/// replacing '%s' format strings
 @function interpolate(
   $string,
   $values...
